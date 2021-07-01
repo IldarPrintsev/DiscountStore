@@ -1,0 +1,14 @@
+# IDE
+/*.suo
+*.DotSettings.user
+*.csproj.user
+
+# build
+**/bin/*
+*/obj/**
+
+# other
+*.orig
+
+.vs/*
+/.idea/**

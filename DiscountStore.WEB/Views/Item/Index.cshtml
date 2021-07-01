@@ -1,0 +1,53 @@
+﻿@model DiscountStore.WEB.Models.ItemListViewModel
+@{
+    ViewData["Title"] = "Item List";
+}
+
+<div>
+    <div class="mb-2">
+        <a class="btn btn-primary" asp-action="Create" asp-controller="Item">Create New Item</a>
+    </div>
+
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th><span>Name</span></th>
+                <th><span>Price</span></th>
+                <th><span>Discount</span></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price.ToString("# €")</td>
+                    <td>
+                        @if (item.Discount != null)
+                        {
+                            <span>@item.Discount.Count.ToString() for @item.Discount.Value.ToString("# €")</span>
+                        }
+                    </td>
+                    <td>
+                        <div>
+                            <form method="post" asp-action="Add" asp-controller="Cart" asp-route-id="@item.Id">
+                                <input type="submit" class="btn btn-success" value="Add To Cart" />
+                            </form>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <form method="post" asp-action="Delete" asp-controller="Item" asp-route-id="@item.Id">
+                                <input type="submit" class="btn btn-danger" value="Delete" />
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,54 @@
+﻿@using DiscountStore.WEB.Models
+@{
+    ViewData["Title"] = "Cart";
+}
+@model CartViewModel
+
+<div>
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th><span>Name</span></th>
+                <th><span>Item Price</span></th>
+                <th><span>Discount</span></th>
+                <th><span>Total Price</span></th>
+                <th><span>Count</span></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model.CartItems)
+            {
+            <tr>
+                <td>@item.Item.Name</td>
+                <td>@item.Item.Price.ToString("# €")</td>
+                <td>
+                    @if (item.Item.Discount != null)
+                    {
+                        <span>@item.Item.Discount.Count.ToString() for @item.Item.Discount.Value.ToString("# €")</span>
+                    }
+                </td>
+                <td>
+                    @item.TotalSum.ToString("# €")
+                </td>
+                <td>
+                    @item.Count
+                </td>
+                <td>
+                    <div class="pull-right">
+                        <form method="post" asp-action="Remove" asp-controller="Cart" asp-route-id="@item.Item.Id">
+                            <input type="submit" class="btn btn-danger" value="Delete" />
+                        </form>
+
+                    </div>
+                </td>
+            </tr>
+            }
+            <tr><td colspan="6" class="text-right"><span>Total: </span><span>@Model.TotalSum.ToString("# €")</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+

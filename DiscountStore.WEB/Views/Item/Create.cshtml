@@ -1,0 +1,42 @@
+﻿@model DiscountStore.WEB.Models.NewItemViewModel
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<form method="post" asp-action="Create" asp-controller="Item">
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th><span>Name</span></th>
+                <th><span>Price</span></th>
+                <th><span>Discount Count</span></th>
+                <th><span>Discount Value</span></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" asp-for="Name" class="form-control" />
+                    <br /><span asp-validation-for="Name" class="text-danger"></span>
+                </td>
+                <td>
+                    <input type="number" asp-for="Price" class="form-control" />
+                    <br /><span asp-validation-for="Price" class="text-danger"></span>
+                </td>
+                <td>
+                    <input type="number" asp-for="DiscontCount" class="form-control" />
+                    <br /><span asp-validation-for="DiscontCount" class="text-danger"></span>
+                </td>
+                <td>
+                    <input type="number" asp-for="DiscontValue" class="form-control" />
+                    <br /><span asp-validation-for="DiscontValue" class="text-danger"></span>
+                </td>
+                <td>
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
